@@ -14,7 +14,6 @@ namespace Solution.Application.Features.Categories.Handlers.Commands
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        static Random random = new Random();
 
         public CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
