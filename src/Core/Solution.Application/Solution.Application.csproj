@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Categories\Handlers\Commands\" />
-    <Folder Include="Features\Categories\Validators\" />
     <Folder Include="Features\Products\Handlers\Commands\" />
     <Folder Include="Features\Products\Validators\" />
   </ItemGroup>

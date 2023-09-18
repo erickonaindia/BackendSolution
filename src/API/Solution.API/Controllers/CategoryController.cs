@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Solution.Application.Features.Categories.DTOs;
 using Solution.Application.Features.Products.Requests;
+using Solution.Application.Features.Products.Responses;
 
 namespace Solution.API.Controllers
 {
@@ -40,6 +41,18 @@ namespace Solution.API.Controllers
             if (result.Data == null)
                 return NotFound(result);
             return Ok(result);
+        }
+
+        [HttpPost("category", Name = "CreateCategory")]
+        public async Task<ActionResult<CreateCategoryResponse>> CreateEvent([FromBody] CreateCategoryDTO categoryDto)
+        {
+            var command = new CreateCategoryRequest { CreateCategoryDTO = categoryDto };
+            var result = await _mediator.Send(command);
+
+            if (result.Errors != null && result.Errors.Count() > 0)
+                return BadRequest(result);
+            return Created(new Uri($"/event/{result.Data.Id}", UriKind.Relative),
+                result.Data);
         }
     }
 }

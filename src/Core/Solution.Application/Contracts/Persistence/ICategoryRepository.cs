@@ -11,5 +11,7 @@ namespace Solution.Application.Contracts.Persistence
     public interface ICategoryRepository : IAsyncRepository<Category>
     {
         Task<IQueryable<Category>> GetCategoriesAsQueryableAsync();
+
+        Task<Category> GetCategoryByName(string categoryName);
     }
 }

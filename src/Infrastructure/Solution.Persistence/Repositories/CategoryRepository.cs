@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Solution.Application.Contracts.Persistence;
 using Solution.Application.Features.Products.Requests;
 using Solution.Domain.Entities;
@@ -19,6 +20,11 @@ namespace Solution.Persistence.Repositories
             return _dbContext.Categories
                 .AsQueryable()
                 .Include(x => x.Products);
+        }
+
+        public async Task<Category> GetCategoryByName(string categoryName)
+        {
+            return await (await GetQueryAsync(x => x.Name.ToLower() == categoryName.ToLower())).FirstOrDefaultAsync();
         }
     }
 }
